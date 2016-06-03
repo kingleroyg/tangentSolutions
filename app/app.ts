@@ -19,7 +19,7 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Getting Started', component: GetProjectsPage },
+            { title: 'GetProjectsPage', component: GetProjectsPage },
             { title: 'List', component: ListPage }
         ];
     }
