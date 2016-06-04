@@ -9,9 +9,11 @@ export class GetProjectsPage {
     public projects;
 
     constructor(public tangentServices: Tangentmicroservices) {
+        /*
         this.tangentServices.getToken('admin', 'admin').subscribe(data => {
             console.log(data);
         }
         );
+        */
     }
 }
