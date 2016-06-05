@@ -1,26 +1,27 @@
 import {Page, NavController} from 'ionic-angular';
+import {SignupPage} from '../signup/signup';
 import {Tangentmicroservices} from '../../providers/tangentmicroservices/tangentmicroservices';
-import {GetProjectsPage} from '../get-projects/get-projects';
+import {SchedulePage} from '../schedule/schedule';
 
 @Page({
-    templateUrl: 'build/pages/login/login.html',
-    providers: [Tangentmicroservices]
+    templateUrl: 'build/pages/login/login.html'
 })
 export class LoginPage {
-    public login;
-    public submitted;
+    login: { username?: string, password?: string } = {};
+    submitted = false;
 
-    constructor(public nav: NavController, public tangentServices: Tangentmicroservices) {
-        this.login = {};
-        this.submitted = false;
-    }
+    constructor(private nav: NavController, private tangentServices: Tangentmicroservices) { }
 
     onLogin(form) {
         this.submitted = true;
 
         if (form.valid) {
-            this.tangentServices.login(this.login.username, this.login.username);
-            this.nav.pop(GetProjectsPage);
+            this.tangentServices.login(this.login.username);
+            this.nav.push(SchedulePage);
         }
+    }
+
+    onSignup() {
+        this.nav.push(SignupPage);
     }
 }

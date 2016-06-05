@@ -36,13 +36,18 @@ export class Tangentmicroservices {
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    login(username, password) {
+    login(username) {
+        let password: string = 'admin';
         //Get tokem
         this.storage.set(this.HAS_LOGGED_IN, true);
         let token: string = '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97';
         this.setUserDetails(username, password, token);
 
         this.events.publish('user:login');
+    }
+
+    setUsername(username) {
+        this.storage.set('username', username);
     }
 
     setUserDetails(username, password, tokem) {
