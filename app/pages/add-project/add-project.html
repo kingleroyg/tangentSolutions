@@ -1,7 +1,7 @@
 <ion-navbar *navbar>
-    <ion-title>{{project.title}}</ion-title>
+    <ion-title>Add Project</ion-title>
 </ion-navbar>
-<ion-content padding class="project-detail">
+<ion-content padding class="add-project">
 
     <form #UpdateForm="ngForm" novalidate>
         <ion-item>
@@ -19,7 +19,7 @@
             </ion-input>
         </ion-item>
         <p [hidden]="description.valid || submitted == false" danger padding-left>
-            description is required
+            Description is required
         </p>
 
         <ion-item>
@@ -28,12 +28,12 @@
             </ion-input>
         </ion-item>
         <p [hidden]="start_date.valid || submitted == false" danger padding-left>
-            description is required
+            title is required
         </p>
 
         <ion-item>
             <ion-label floating primary>End date</ion-label>
-            <ion-input [(ngModel)]="project.end_date" ngControl="end_date" type="text" #end_date="ngForm" required>
+            <ion-input [(ngModel)]="project.end_date" ngControl="end_date" type="text" #end_date="ngForm">
             </ion-input>
         </ion-item>
 
@@ -47,22 +47,8 @@
             <ion-toggle [(ngModel)]="project.is_active" checked="project.is_active"></ion-toggle>
         </ion-item>
 
-        <h2>Tasks</h2>
-
-        <ion-card *ngFor="let task of tasks">
-            <ion-card-header>
-                {{task.title}}
-            </ion-card-header>
-            <ion-card-content>
-                Due date:  {{task.due_date}}
-
-                <ion-badge item-right>{{task.estimated_hours}} Hours</ion-badge>
-            </ion-card-content>
-        </ion-card>
-
         <div padding>
-            <button (click)="onSaveInfo(UpdateForm)" type="submit" primary block>Save</button>
-            <button block (click)="deleteContact()">Delete</button>
+            <button (click)="onCreateProject(UpdateForm)" type="submit" primary block>Save</button>
         </div>
     </form>
 </ion-content>

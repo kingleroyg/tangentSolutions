@@ -1,9 +1,14 @@
-<ion-navbar hideBackButton *navbar>
+<ion-navbar *navbar hideBackButton class="show-navbar">
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Menu</ion-title>
+    <ion-title>Projecs</ion-title>
+
+    <ion-buttons (click)="addProject()" end>
+        <button royal><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
 </ion-navbar>
+<!-- menuToggle -->
 
 <ion-content class="schedule">
 
@@ -13,7 +18,7 @@
                 <ion-note item-right>
                     <ion-badge item-right>{{project.start_date}}</ion-badge>
                 </ion-note>
-                <h2>{{project.title}}</h2>
+                <h2>{{project.title}} {{project.pk}}</h2>
                 <p>{{project.description}}</p>
             </ion-item>
             <ion-item-options>

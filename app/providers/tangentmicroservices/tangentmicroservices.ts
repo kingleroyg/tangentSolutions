@@ -31,6 +31,27 @@ export class Tangentmicroservices {
             .catch(this.handleError);
     }
 
+    createProject(project) {
+        let body = JSON.stringify(project);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
+
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/', body, options)
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
+
+    deleteProject(project) {
+        let body = JSON.stringify(project);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+
+        let options = new RequestOptions({ headers: headers });
+        return this.http.delete('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/' + project['pk'], options)
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
+
     handleError(error) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');

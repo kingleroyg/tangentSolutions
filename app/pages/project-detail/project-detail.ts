@@ -5,8 +5,14 @@ import {Page, NavController, NavParams} from 'ionic-angular';
 })
 export class ProjectDetailPage {
     project;
+    tasks;
 
     constructor(public nav: NavController, private navParam: NavParams) {
         this.project = this.navParam.get('project');
+
+        this.tasks = this.project.task_set;
+    }
+
+    onSaveInfo() {
     }
 }

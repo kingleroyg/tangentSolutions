@@ -17,3 +17,15 @@ $categories: ( ionic: color($colors, primary), angular: #AC282B, communication: 
 .ios .hide-border .toolbar-background {
     border-bottom-color: transparent;
 }
+
+.toolbar-buttons-page {
+    .footer-title {
+        padding: 0 1rem;
+    }
+
+    .footer-title .toolbar-title {
+        font-size: 1.6rem;
+        text-align: left;
+        padding: 0;
+    }
+}
