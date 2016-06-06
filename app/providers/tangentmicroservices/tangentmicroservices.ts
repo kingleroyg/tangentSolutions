@@ -6,10 +6,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class Tangentmicroservices {
-    //data: any = null;
-
     private data;
-    public favoritesURL;
     private storage;
     private projects;
     _favorites = [];
@@ -18,10 +15,13 @@ export class Tangentmicroservices {
     constructor(public http: Http, private events: Events) {
         this.storage = new Storage(SqlStorage, { name: 'user' });
 
-        this.favoritesURL = 'http://userservice.staging.tangentmicroservices.com/api-token-auth/';
         this.HAS_LOGGED_IN = 'hasLoggedIn';
     }
-
+    /*
+    *name: GetToken
+    *description: Gets a user token
+    *params: Username , password
+    */
     getToken(username, password) {
         let body = JSON.stringify({ "username": username, "password": password });
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -30,7 +30,11 @@ export class Tangentmicroservices {
             .map(res => res.json())
             .catch(this.handleError);
     }
-
+    /*
+    *name: create Project
+    *description: Creates a new Project
+    *params: project: Object
+    */
     createProject(project) {
         let token = this.getUsertoken();
 
@@ -43,7 +47,11 @@ export class Tangentmicroservices {
             .map(res => res.json())
             .catch(this.handleError);
     }
-
+    /*
+    *name: delete Project
+    *description: Deletes a project
+    *params: project: Object
+    */
     deleteProject(project) {
         let token = this.getUsertoken();
         let body = JSON.stringify(project);
@@ -55,7 +63,11 @@ export class Tangentmicroservices {
             .map(res => res.json())
             .catch(this.handleError);
     }
-
+    /*
+    *name: update Project
+    *description: Updates a user project
+    *params: project: Object
+    */
     updateProject(project) {
         let token = this.getUsertoken();
         let body = JSON.stringify(project);
@@ -73,15 +85,18 @@ export class Tangentmicroservices {
         return Observable.throw(error.json().error || 'Server error');
     }
 
+    /*
+    *name: Login
+    *description: Logs user into the application
+    *params:username : string , password : string
+    */
     login(username, password) {
         this.storage.set(this.HAS_LOGGED_IN, true);
-        let token = this.getUsertoken();
-
         this.events.publish('user:login');
 
         this.getToken(username, password).subscribe(data => {
             if (data['token']) {
-                this.setUserDetails(username, password, token)
+                this.setUserDetails(username, password, data['token']);
             }
         }
         );
@@ -89,14 +104,14 @@ export class Tangentmicroservices {
 
     getDetails() {
         let headers = new Headers();
+        let token: string = '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97';
+
+        this.getToken_().then(val => {
+            console.log(val);
+        })
 
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
-
-        if (this.projects) {
-            // already loaded data
-            return Promise.resolve(this.projects);
-        }
+        headers.append('Authorization', token);
 
         // don't have the data yet
         return new Promise(resolve => {
@@ -114,10 +129,21 @@ export class Tangentmicroservices {
         });
     }
 
-    setUsername(username) {
-        this.storage.set('username', username);
+    getToken_() {
+        return new Promise((resolve, reject) => {
+            this.storage.get("token").then((tokenValue) => {
+                resolve(tokenValue);
+            }).catch(error => {
+                reject(error);
+            })
+        });
     }
 
+    /*
+    *name: setUserDetails
+    *description: Saves user details locally
+    *params:
+    */
     setUserDetails(username, password, token) {
         console.log("Username: " + username + " password: " + password + " token: " + token);
         this.storage.set('username', username);
@@ -125,12 +151,16 @@ export class Tangentmicroservices {
         this.storage.set('token', token);
     }
 
+    /*
+    *name: logout
+    *description: Logs user out of the application
+    *params:
+    */
     logout() {
         this.storage.remove(this.HAS_LOGGED_IN);
         this.storage.remove('username');
         this.storage.remove('password');
         this.storage.remove('token');
-
         this.events.publish('user:logout');
     }
 

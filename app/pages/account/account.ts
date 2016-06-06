@@ -37,7 +37,7 @@ export class AccountPage {
         alert.addButton({
             text: 'Ok',
             handler: data => {
-                this.tangentServices.setUsername(data.username);
+                //this.tangentServices.setUsername(data.username);
                 this.getUsername();
             }
         });

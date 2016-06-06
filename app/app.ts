@@ -35,7 +35,7 @@ class MyApp {
     loggedInPages: PageObj[] = [
         { title: 'Projects', component: GetProjectsPage, icon: 'calendar' },
         { title: 'Account', component: AccountPage, icon: 'person' },
-        { title: 'Logout', component: GetProjectsPage, icon: 'log-out' }
+        { title: 'Logout', component: LoginPage, icon: 'log-out' }
     ];
 
     loggedOutPages: PageObj[] = [
