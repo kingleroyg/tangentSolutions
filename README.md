@@ -1,11 +1,10 @@
-# tangentSolutions
+![Alt text](/resources/screenshots/nexus/1_logo.png?raw=true "Tangent Solutions Logo")
+
 Tangent Solutions Assignment. Practical Assignment – Hybrid Ionic App
 
 > “project” : Interview Assignment
 > “project_category” : Hybrid Ionic
 > “version” : v1.0
-
-![Alt text](/resources/screenshots/nexus/1_logo.png?raw=true "Tangent Solutions Logo")
 
 #Requirements
 
@@ -24,7 +23,7 @@ To install this on a windows machin
 ```sh
 git clone https://github.com/kingleroyg/tangentSolutions/ && cd tangentSolutions
 ```
-Then install npm 
+Then install npm
 ```sh
 npm install
 ```
@@ -36,8 +35,12 @@ or
 ```sh
 ionic run ios
 ```
-You can also download the app from the cload
+You can also download the app from the cloud
 
-Download ```shIonic View``` from your device store (ios , android, windows)
+Download
+```sh
+Ionic View
+```
+from your device store (ios , android, windows).
 
 You can enter the following key to get the latest updates : **90e3b3d8**

@@ -44,8 +44,8 @@ export class ProjectDetailPage {
 
                         this.tangentService.deleteProject(project)
                             .subscribe(data => {
-                                //this.nav.pop(GetProjectsPage);
-                                this.nav.push(GetProjectsPage);
+                                this.nav.pop(GetProjectsPage, { project: project });
+                                //this.nav.push(GetProjectsPage);
                                 //var index = this.project.indexOf(project);
                                 //this.project.splice(index, 1);
                             });
