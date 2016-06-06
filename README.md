@@ -5,6 +5,8 @@ Tangent Solutions Assignment. Practical Assignment – Hybrid Ionic App
 > “project_category” : Hybrid Ionic
 > “version” : v1.0
 
+![Alt text](/resources/screenshots/nexus/1.png?raw=true "Tangent Solutions Logo")
+
 #Requirements
 
 Build a mobile app using Ionic that demonstrates the following:
