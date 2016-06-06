@@ -36,6 +36,6 @@ ionic run ios
 ```
 You can also download the app from the cload
 
-Download Ionic View from your device store (ios , android, windows)
+Download ```shIonic View``` from your device store (ios , android, windows)
 
-You can enter the following key to get the latest updates : **Coming Soon**
+You can enter the following key to get the latest updates : **90e3b3d8**
