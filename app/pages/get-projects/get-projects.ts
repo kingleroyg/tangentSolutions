@@ -1,6 +1,7 @@
 import {IonicApp, Page, Modal, Alert, NavController, ItemSliding, List} from 'ionic-angular';
 import {Tangentmicroservices} from '../../providers/tangentmicroservices/tangentmicroservices';
 import {ViewChild} from '@angular/core';
+import {ProjectDetailPage} from '../project-detail/project-detail';
 
 @Page({
     templateUrl: 'build/pages/get-projects/get-projects.html',
@@ -24,5 +25,9 @@ export class GetProjectsPage {
                 this.projects = data;
                 console.log(this.projects);
             });
+    }
+
+    viewProject(project) {
+        this.nav.push(ProjectDetailPage, { project: project });
     }
 }

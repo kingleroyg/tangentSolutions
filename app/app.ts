@@ -1,8 +1,6 @@
 import {ViewChild} from '@angular/core';
 import {App, Events, Platform, Nav, MenuController, Modal} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
-//import {ConferenceData} from './providers/conference-data';
-//import {UserData} from './providers/user-data';
 import {AccountPage} from './pages/account/account';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
@@ -30,13 +28,10 @@ class MyApp {
     // the login page disables the left menu
     // used for an example of ngFor and navigation
     appPages: PageObj[] = [
-        { title: 'Schedule', component: GetProjectsPage, icon: 'calendar' },
-        //{ title: 'Speakers', component: TabsPage, index: 1, icon: 'contacts' },
-        //{ title: 'Map', component: TabsPage, index: 2, icon: 'map' },
-        //{ title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
+        { title: 'Projects', component: GetProjectsPage, icon: 'calendar' }
     ];
     loggedInPages: PageObj[] = [
-        { title: 'Account', component: AccountPage, icon: 'person' },
+        //  { title: 'Account', component: AccountPage, icon: 'person' },
         { title: 'Logout', component: GetProjectsPage, icon: 'log-out' }
     ];
     loggedOutPages: PageObj[] = [

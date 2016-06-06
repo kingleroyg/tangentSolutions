@@ -9,7 +9,7 @@
 
     <ion-list>
         <ion-item-sliding *ngFor="let project of projects">
-            <ion-item (click)="viewMessage(message)">
+            <ion-item (click)="viewProject(project)">
                 <ion-note item-right>
                     <ion-badge item-right>{{project.start_date}}</ion-badge>
                 </ion-note>
@@ -17,7 +17,7 @@
                 <p>{{project.description}}</p>
             </ion-item>
             <ion-item-options>
-                <button primary (click)="deleteMessage(message)">
+                <button primary (click)="deleteProject(project)">
                     <ion-icon name="trash"></ion-icon>
                     Delete
                 </button>
