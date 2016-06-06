@@ -23,7 +23,7 @@ export class Tangentmicroservices {
     }
 
     getToken(username, password) {
-        let body = JSON.stringify({ "username": "admin", "password": "admin" });
+        let body = JSON.stringify({ "username": username, "password": password });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://userservice.staging.tangentmicroservices.com/api-token-auth/', body, options)
@@ -32,9 +32,11 @@ export class Tangentmicroservices {
     }
 
     createProject(project) {
+        let token = this.getUsertoken();
+
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
+        headers.append('Authorization', token);
 
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/', body, options)
@@ -43,11 +45,25 @@ export class Tangentmicroservices {
     }
 
     deleteProject(project) {
+        let token = this.getUsertoken();
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', token);
 
         let options = new RequestOptions({ headers: headers });
         return this.http.delete('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/' + project['pk'], options)
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
+
+    updateProject(project) {
+        let token = this.getUsertoken();
+        let body = JSON.stringify(project);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', token);
+
+        let options = new RequestOptions({ headers: headers });
+        return this.http.put('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/', body, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
@@ -59,7 +75,7 @@ export class Tangentmicroservices {
 
     login(username, password) {
         this.storage.set(this.HAS_LOGGED_IN, true);
-        let token: string = '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97';
+        let token = this.getUsertoken();
 
         this.events.publish('user:login');
 
@@ -120,6 +136,12 @@ export class Tangentmicroservices {
 
     getUsername() {
         return this.storage.get('username').then((value) => {
+            return value;
+        });
+    }
+
+    getUsertoken() {
+        return this.storage.get('token').then((value) => {
             return value;
         });
     }

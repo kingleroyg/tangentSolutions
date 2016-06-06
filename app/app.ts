@@ -7,6 +7,7 @@ import {SignupPage} from './pages/signup/signup';
 import {TutorialPage} from './pages/tutorial/tutorial';
 import {GetProjectsPage} from  './pages/get-projects/get-projects';
 import {Tangentmicroservices} from './providers/tangentmicroservices/tangentmicroservices';
+import {AboutPage} from './pages/about/about';
 
 interface PageObj {
     title: string;
@@ -28,12 +29,15 @@ class MyApp {
     // the login page disables the left menu
     // used for an example of ngFor and navigation
     appPages: PageObj[] = [
-        { title: 'Projects', component: GetProjectsPage, icon: 'calendar' }
+        { title: 'About', component: AboutPage, icon: 'help' }
+
     ];
     loggedInPages: PageObj[] = [
-        //  { title: 'Account', component: AccountPage, icon: 'person' },
+        { title: 'Projects', component: GetProjectsPage, icon: 'calendar' },
+        { title: 'Account', component: AccountPage, icon: 'person' },
         { title: 'Logout', component: GetProjectsPage, icon: 'log-out' }
     ];
+
     loggedOutPages: PageObj[] = [
         { title: 'Login', component: LoginPage, icon: 'log-in' },
         { title: 'Signup', component: SignupPage, icon: 'person-add' }

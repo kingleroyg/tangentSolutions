@@ -1,4 +1,4 @@
-import {IonicApp, Page, Modal, Alert, NavController, ItemSliding, List, NavParams} from 'ionic-angular';
+import {IonicApp, Page, Modal, Alert, NavController, ItemSliding, List, NavParams, Loading} from 'ionic-angular';
 import {Tangentmicroservices} from '../../providers/tangentmicroservices/tangentmicroservices';
 import {ViewChild} from '@angular/core';
 import {ProjectDetailPage} from '../project-detail/project-detail';
@@ -21,8 +21,16 @@ export class GetProjectsPage {
     public projects;
 
     constructor(private app: IonicApp, private nav: NavController, private tangentService: Tangentmicroservices, private navParams: NavParams) {
+        let loading = Loading.create({
+            content: "Please wait...",
+            duration: 9000,
+            dismissOnPageChange: false
+        });
+
+        this.nav.present(loading);
         this.tangentService.getDetails()
             .then(data => {
+                loading.dismiss();
                 this.projects = data;
             });
     }
