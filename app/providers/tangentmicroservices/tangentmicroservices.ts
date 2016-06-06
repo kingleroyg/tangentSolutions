@@ -40,7 +40,7 @@ export class Tangentmicroservices {
 
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', token);
+        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
 
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/', body, options)
@@ -56,12 +56,11 @@ export class Tangentmicroservices {
         let token = this.getUsertoken();
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', token);
-
+        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
+        console.log('PK');
+        console.log(project['pk']);
         let options = new RequestOptions({ headers: headers });
-        return this.http.delete('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/' + project['pk'], options)
-            .map(res => res.json())
-            .catch(this.handleError);
+        return this.http.delete('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/' + project['pk'] + '/', options);
     }
     /*
     *name: update Project
@@ -72,10 +71,10 @@ export class Tangentmicroservices {
         let token = this.getUsertoken();
         let body = JSON.stringify(project);
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization', token);
+        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
 
         let options = new RequestOptions({ headers: headers });
-        return this.http.put('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/', body, options)
+        return this.http.put('http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/' + project['pk'] + '/', body, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
