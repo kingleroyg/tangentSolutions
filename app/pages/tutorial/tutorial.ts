@@ -1,5 +1,5 @@
 import {Page, NavController, MenuController} from 'ionic-angular';
-import {SchedulePage} from '../schedule/schedule';
+import {GetProjectsPage} from '../get-projects/get-projects';
 import {SignupPage} from '../signup/signup';
 
 interface Slide {
@@ -36,7 +36,7 @@ export class TutorialPage {
     }
 
     startApp() {
-        this.nav.push(SchedulePage);
+        this.nav.push(GetProjectsPage);
     }
 
     onSlideChangeStart(slider) {

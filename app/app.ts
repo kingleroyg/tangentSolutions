@@ -7,7 +7,7 @@ import {AccountPage} from './pages/account/account';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
 import {TutorialPage} from './pages/tutorial/tutorial';
-import {SchedulePage} from './pages/schedule/schedule';
+import {GetProjectsPage} from  './pages/get-projects/get-projects';
 import {Tangentmicroservices} from './providers/tangentmicroservices/tangentmicroservices';
 
 interface PageObj {
@@ -30,21 +30,21 @@ class MyApp {
     // the login page disables the left menu
     // used for an example of ngFor and navigation
     appPages: PageObj[] = [
-        { title: 'Schedule', component: SchedulePage, icon: 'calendar' },
+        { title: 'Schedule', component: GetProjectsPage, icon: 'calendar' },
         //{ title: 'Speakers', component: TabsPage, index: 1, icon: 'contacts' },
         //{ title: 'Map', component: TabsPage, index: 2, icon: 'map' },
         //{ title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
     ];
     loggedInPages: PageObj[] = [
         { title: 'Account', component: AccountPage, icon: 'person' },
-        { title: 'Logout', component: SchedulePage, icon: 'log-out' }
+        { title: 'Logout', component: GetProjectsPage, icon: 'log-out' }
     ];
     loggedOutPages: PageObj[] = [
         { title: 'Login', component: LoginPage, icon: 'log-in' },
         { title: 'Signup', component: SignupPage, icon: 'person-add' }
     ];
 
-    rootPage: any = SchedulePage;
+    rootPage: any = GetProjectsPage;
     //rootPage: any = TutorialPage;
 
     constructor(private platform: Platform, private events: Events, private tangentService: Tangentmicroservices, private menu: MenuController) {
@@ -77,7 +77,7 @@ class MyApp {
         // reset the nav to remove previous pages and only have this page
         // we wouldn't want the back button to show in this scenario
         if (page.index) {
-            this.nav.setRoot(SchedulePage);
+            this.nav.setRoot(GetProjectsPage);
         } else {
             this.nav.setRoot(page.component);
         }

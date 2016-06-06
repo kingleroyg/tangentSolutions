@@ -11,6 +11,7 @@ export class Tangentmicroservices {
     private data;
     public favoritesURL;
     private storage;
+    private projects;
     _favorites = [];
     HAS_LOGGED_IN = 'hasLoggedIn';
 
@@ -19,7 +20,6 @@ export class Tangentmicroservices {
 
         this.favoritesURL = 'http://userservice.staging.tangentmicroservices.com/api-token-auth/';
         this.HAS_LOGGED_IN = 'hasLoggedIn';
-        //this.getToken(username, password);
     }
 
     getToken(username, password) {
@@ -36,24 +36,56 @@ export class Tangentmicroservices {
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    login(username) {
-        let password: string = 'admin';
-        //Get tokem
+    login(username, password) {
         this.storage.set(this.HAS_LOGGED_IN, true);
         let token: string = '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97';
-        this.setUserDetails(username, password, token);
 
         this.events.publish('user:login');
+
+        this.getToken(username, password).subscribe(data => {
+            if (data['token']) {
+                this.setUserDetails(username, password, token)
+            }
+        }
+        );
+    }
+
+    getDetails() {
+        let headers = new Headers();
+
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
+
+        if (this.projects) {
+            // already loaded data
+            return Promise.resolve(this.projects);
+        }
+
+        // don't have the data yet
+        return new Promise(resolve => {
+            // We're using Angular HTTP provider to request the data,
+            // then on the response, it'll map the JSON data to a parsed JS object.
+            // Next, we process the data and resolve the promise with the new data.
+            this.http.get(`http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/`, { headers: headers })
+                .map(res => res.json())
+                .subscribe(data => {
+                    // we've got back the raw data, now generate the core schedule data
+                    // and save the data for later reference
+                    this.data = data;
+                    resolve(this.data);
+                });
+        });
     }
 
     setUsername(username) {
         this.storage.set('username', username);
     }
 
-    setUserDetails(username, password, tokem) {
+    setUserDetails(username, password, token) {
+        console.log("Username: " + username + " password: " + password + " token: " + token);
         this.storage.set('username', username);
         this.storage.set('password', password);
-        this.storage.set('token', tokem);
+        this.storage.set('token', token);
     }
 
     logout() {

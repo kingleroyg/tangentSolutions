@@ -1,6 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
-import {SchedulePage} from '../schedule/schedule';
-//import {UserData} from '../../providers/user-data';
+import {GetProjectsPage} from '../get-projects/get-projects';
 
 @Page({
     templateUrl: 'build/pages/signup/signup.html'
@@ -16,7 +15,7 @@ export class SignupPage {
 
         if (form.valid) {
             //this.userData.signup(this.signup.username);
-            this.nav.push(SchedulePage);
+            this.nav.push(GetProjectsPage);
         }
     }
 }

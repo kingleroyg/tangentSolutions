@@ -1,7 +1,7 @@
 import {Page, NavController} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {Tangentmicroservices} from '../../providers/tangentmicroservices/tangentmicroservices';
-import {SchedulePage} from '../schedule/schedule';
+import {GetProjectsPage} from '../get-projects/get-projects';
 
 @Page({
     templateUrl: 'build/pages/login/login.html'
@@ -16,8 +16,8 @@ export class LoginPage {
         this.submitted = true;
 
         if (form.valid) {
-            this.tangentServices.login(this.login.username);
-            this.nav.push(SchedulePage);
+            this.tangentServices.login(this.login.username, this.login.password);
+            this.nav.push(GetProjectsPage);
         }
     }
 
