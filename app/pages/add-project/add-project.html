@@ -1,6 +1,14 @@
-<ion-navbar *navbar>
-    <ion-title>Add Project</ion-title>
-</ion-navbar>
+<ion-toolbar>
+
+    <ion-title>
+        Add Project
+    </ion-title>
+
+    <ion-buttons end>
+        <button (click)="dismiss()">Cancel</button>
+    </ion-buttons>
+</ion-toolbar>
+
 <ion-content padding class="add-project">
 
     <form #UpdateForm="ngForm" novalidate>
@@ -23,12 +31,11 @@
         </p>
 
         <ion-item>
-            <ion-label floating primary>Start date</ion-label>
-            <ion-input [(ngModel)]="project.start_date" ngControl="start_date" type="text" #start_date="ngForm" required>
-            </ion-input>
+            <ion-label>Start date</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="project.start_date" ngControl="start_date" type="text" #start_date="ngForm" required></ion-datetime>
         </ion-item>
         <p [hidden]="start_date.valid || submitted == false" danger padding-left>
-            title is required
+            Start date is required
         </p>
 
         <ion-item>

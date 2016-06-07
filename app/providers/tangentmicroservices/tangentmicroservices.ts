@@ -90,12 +90,11 @@ export class Tangentmicroservices {
     *params:username : string , password : string
     */
     login(username, password) {
-        this.storage.set(this.HAS_LOGGED_IN, true);
-        this.events.publish('user:login');
-
         this.getToken(username, password).subscribe(data => {
             if (data['token']) {
                 this.setUserDetails(username, password, data['token']);
+                this.storage.set(this.HAS_LOGGED_IN, true);
+                this.events.publish('user:login');
             }
         }
         );
@@ -103,14 +102,9 @@ export class Tangentmicroservices {
 
     getDetails() {
         let headers = new Headers();
-        let token: string = '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97';
-
-        this.getToken_().then(val => {
-            console.log(val);
-        })
 
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', token);
+        headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');
 
         // don't have the data yet
         return new Promise(resolve => {

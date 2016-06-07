@@ -39,8 +39,8 @@ class MyApp {
     ];
 
     loggedOutPages: PageObj[] = [
-        { title: 'Login', component: LoginPage, icon: 'log-in' },
-        { title: 'Signup', component: SignupPage, icon: 'person-add' }
+        { title: 'Login', component: LoginPage, icon: 'log-in' }
+        //{ title: 'Signup', component: SignupPage, icon: 'person-add' }
     ];
 
     rootPage: any = GetProjectsPage;

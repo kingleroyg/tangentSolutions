@@ -29,7 +29,19 @@ export class GetProjectsPage {
     }
 
     viewProject(project) {
-        this.nav.push(ProjectDetailPage, { project: project });
+        let modal = Modal.create(ProjectDetailPage, { project: project });
+        this.nav.present(modal);
+
+        modal.onDismiss((data: any[]) => {
+            if (data) {
+                if (data['save']) {
+                    //this.excludeTracks = data;
+                    //this.updateSchedule();
+                } else if (data['delete']) {
+                    this.deleteProject(data['delete']);
+                }
+            }
+        });
     }
 
     deleteProject(project) {
@@ -66,6 +78,45 @@ export class GetProjectsPage {
     }
 
     addProject() {
-        this.nav.push(AddProjectPage);
+        let modal = Modal.create(AddProjectPage);
+        this.nav.present(modal);
+
+        modal.onDismiss((data: any[]) => {
+            if (data) {
+                if (data['add']) {
+                    let loading = Loading.create({
+                        content: "Please wait...",
+
+                        dismissOnPageChange: false
+                    });
+                    this.nav.present(loading);
+
+                    this.tangentService.createProject(data['add'])
+                        .subscribe(res => {
+                            console.log(data['add']);
+                            this.projects.push(data['add']);
+                            loading.dismiss();
+                            //this.nav.push(GetProjectsPage, { 'newPoject': data });
+                        });
+                }
+            }
+        });
+    }
+
+    refresh() {
+        this.projects = [];
+
+        let loading = Loading.create({
+            content: "Please wait...",
+            duration: 9000,
+            dismissOnPageChange: false
+        });
+
+        this.nav.present(loading);
+        this.tangentService.getDetails()
+            .then(data => {
+                loading.dismiss();
+                this.projects = data;
+            });
     }
 }

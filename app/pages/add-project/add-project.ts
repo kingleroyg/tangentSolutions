@@ -1,4 +1,4 @@
-import {Page, NavController, Loading} from 'ionic-angular';
+import {Page, NavController, Loading, ViewController} from 'ionic-angular';
 import {Tangentmicroservices} from '../../providers/tangentmicroservices/tangentmicroservices';
 import {GetProjectsPage} from '../get-projects/get-projects';
 
@@ -17,26 +17,25 @@ export class AddProjectPage {
     } = {};
     submitted = false;
 
-    constructor(public nav: NavController, private tangentService: Tangentmicroservices) {
+    constructor(
+        public nav: NavController,
+        private tangentService: Tangentmicroservices,
+        private viewCtrl: ViewController) {
         this.project.is_billable = false;
         this.project.is_active = false;
-        this.project.start_date = '1778-09-09';
+        this.project.start_date = '2016-06-06';
     }
 
     onCreateProject(form) {
         this.submitted = true;
+        if (form.valid) {
+            this.dismiss({ 'add': this.project });
+        }
+    }
 
-        let loading = Loading.create({
-            content: "Please wait...",
-            duration: 9000,
-            dismissOnPageChange: false
-        });
-        this.nav.present(loading);
-
-        this.tangentService.createProject(this.project)
-            .subscribe(data => {
-                loading.dismiss();
-                this.nav.push(GetProjectsPage, { 'newPoject': data });
-            });
+    dismiss(data) {
+        // using the injected ViewController this page
+        // can "dismiss" itself and pass back data
+        this.viewCtrl.dismiss(data);
     }
 }

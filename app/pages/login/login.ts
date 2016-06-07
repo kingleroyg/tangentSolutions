@@ -16,9 +16,9 @@ export class LoginPage {
         this.submitted = true;
 
         if (form.valid) {
+            this.viewCtrl.dismiss();
             this.tangentServices.login(this.login.username, this.login.password);
             //this.nav.push(GetProjectsPage);
-            this.viewCtrl.dismiss();
         }
     }
 
