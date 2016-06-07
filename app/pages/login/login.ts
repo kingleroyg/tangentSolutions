@@ -10,7 +10,8 @@ export class LoginPage {
     login: { username?: string, password?: string } = {};
     submitted = false;
 
-    constructor(private nav: NavController, private tangentServices: Tangentmicroservices, private viewCtrl: ViewController) { }
+    constructor(private nav: NavController, private tangentServices: Tangentmicroservices, private viewCtrl: ViewController) {
+    }
 
     onLogin(form) {
         this.submitted = true;

@@ -44,3 +44,25 @@ Ionic View
 from your device store (ios , android, windows).
 
 You can enter the following key to get the latest updates : **90e3b3d8**
+
+#Checklist
+
+**Requirements:**
+  - View projects--DONE
+  - Edit Projects--DONE
+  - Save Projects --DONE
+  - Delete Projects--DONE
+  - Create Projects--DONE
+  - Add a refresh Icon--DONE
+
+**Future:**
+  - Add loading Icon--DONE
+  - View, Edit you Account Details
+  - Add Loading on all requests--DONE
+
+**Not in spec but possible:**
+  - Add offline notification--DONE
+  - Search projects
+  - Push Down To refresh Function
+  - add native date Selectors--DONE
+  - Enable Tutorial Screen(Disabled for development)

@@ -100,8 +100,20 @@ export class Tangentmicroservices {
         );
     }
 
+    GetUserToken() {
+        return this.storage.get('token').then((value) => {
+            return value;
+        });
+    }
+
     getDetails() {
         let headers = new Headers();
+        //let tokenNum: string;
+
+        let tokenNum = this.GetUserToken().then((username) => {
+            return username;
+        });
+        console.log(tokenNum);
 
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', '71456dbd15de0c0b6d2b4b44e5a92ad94c6def97');

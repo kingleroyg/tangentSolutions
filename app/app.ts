@@ -1,6 +1,6 @@
 import {ViewChild} from '@angular/core';
-import {App, Events, Platform, Nav, MenuController, Modal} from 'ionic-angular';
-import {StatusBar, Splashscreen} from 'ionic-native';
+import {App, Events, Platform, Nav, MenuController, Modal, Loading} from 'ionic-angular';
+import {StatusBar, Splashscreen, Network, Connection} from 'ionic-native';
 import {AccountPage} from './pages/account/account';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
@@ -51,6 +51,27 @@ class MyApp {
         platform.ready().then(() => {
             StatusBar.styleDefault();
             Splashscreen.hide();
+        });
+
+        let loading = Loading.create({
+            content: `
+                     <div class="custom-spinner-container">
+                     <div class="custom-spinner-box"></div>
+                     </div>
+                     <p>This application requires a internet connect.</p>`,
+            duration: 90000
+        });
+        // watch network for a disconnect
+        let disconnectSubscription = Network.onDisconnect().subscribe(() => {
+            this.nav.present(loading);
+            console.log('network was disconnected :-( ')
+        });
+
+        // watch network for a connection
+        let connectSubscription = Network.onConnect().subscribe(() => {
+            loading.onDismiss(() => {
+                console.log('network connected!');
+            });
         });
 
         // decide which menu items should be hidden by current login status stored in local storage
