@@ -1,0 +1,74 @@
+<ion-toolbar>
+
+    <ion-title>
+        {{project.title}}
+    </ion-title>
+
+    <ion-buttons end>
+        <button (click)="dismiss(save)">Cancel</button>
+    </ion-buttons>
+</ion-toolbar>
+
+<ion-content padding class="project-detail">
+
+    <form #UpdateForm="ngForm" novalidate>
+        <ion-item>
+            <ion-label floating primary>Title</ion-label>
+            <ion-input [(ngModel)]="project.title" ngControl="title" type="text" #title="ngForm" required>
+            </ion-input>
+        </ion-item>
+        <p [hidden]="title.valid || submitted == false" danger padding-left>
+            title is required
+        </p>
+
+        <ion-item>
+            <ion-label floating primary>Description</ion-label>
+            <ion-input [(ngModel)]="project.description" ngControl="description" type="text" #description="ngForm" required>
+            </ion-input>
+        </ion-item>
+        <p [hidden]="description.valid || submitted == false" danger padding-left>
+            description is required
+        </p>
+
+        <ion-item>
+            <ion-label>Start date</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="project.start_date" ngControl="start_date" type="text" #start_date="ngForm" required></ion-datetime>
+        </ion-item>
+        <p [hidden]="start_date.valid || submitted == false" danger padding-left>
+            Start date is required
+        </p>
+
+        <ion-item>
+            <ion-label>End date</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="project.end_date" ngControl="end_date" type="text" #end_date="ngForm"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label> Billable</ion-label>
+            <ion-toggle [(ngModel)]="project.is_billable" checked="project.is_billable"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+            <ion-label> Active</ion-label>
+            <ion-toggle [(ngModel)]="project.is_active" checked="project.is_active"></ion-toggle>
+        </ion-item>
+
+        <h2>Tasks</h2>
+
+        <ion-card *ngFor="let task of tasks">
+            <ion-card-header>
+                {{task.title}}
+            </ion-card-header>
+            <ion-card-content>
+                Due date:  {{task.due_date}}
+
+                <ion-badge item-right>{{task.estimated_hours}} Hours</ion-badge>
+            </ion-card-content>
+        </ion-card>
+
+        <div padding>
+            <button (click)="onSaveInfo(UpdateForm)" type="submit" primary block>Save</button>
+            <button block (click)="deleteProject(project)">Delete</button>
+        </div>
+    </form>
+</ion-content>

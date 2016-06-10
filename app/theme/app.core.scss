@@ -4,7 +4,6 @@
 // --------------------------------------------------
 // CSS that should apply to the app for every mode
 
-
 // App Shared Imports
 // --------------------------------------------------
 // These are the various page imports which make up this app.
@@ -17,14 +16,6 @@
 
 @import "../pages/login/login";
 
-@import "../pages/map/map";
-
-@import "../pages/schedule/schedule";
-
-@import "../pages/schedule-filter/schedule-filter";
-
-@import "../pages/speaker-detail/speaker-detail";
-
-@import "../pages/speaker-list/speaker-list";
+@import "../pages/projects/projects";
 
 @import "../pages/tutorial/tutorial";

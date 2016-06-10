@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, ViewController, Popover, Platform} from 'ionic-angular';
 
 @Component({
-  template: `
+    template: `
     <ion-list [attr.no-lines]="!isIos">
       <button ion-item (click)="close()">Learn Ionic</button>
       <button ion-item (click)="close()">Documentation</button>
@@ -12,28 +12,27 @@ import {NavController, ViewController, Popover, Platform} from 'ionic-angular';
   `
 })
 class PopoverPage {
-  isIos: boolean = false;
+    isIos: boolean = false;
 
-  constructor(private viewCtrl: ViewController, private platform: Platform) {
-    this.isIos = platform.is('ios');
-  }
+    constructor(private viewCtrl: ViewController, private platform: Platform) {
+        this.isIos = platform.is('ios');
+    }
 
-  close() {
-    this.viewCtrl.dismiss();
-  }
+    close() {
+        this.viewCtrl.dismiss();
+    }
 }
 
-
 @Component({
-  templateUrl: 'build/pages/about/about.html'
+    templateUrl: 'build/pages/about/about.html'
 })
 export class AboutPage {
-  conferenceDate = '2047-05-17';
+    conferenceDate = '2016-06-15';
 
-  constructor(private nav: NavController) {}
+    constructor(private nav: NavController) { }
 
-  presentPopover(event) {
-    let popover = Popover.create(PopoverPage);
-    this.nav.present(popover, { ev: event });
-  }
+    presentPopover(event) {
+        let popover = Popover.create(PopoverPage);
+        this.nav.present(popover, { ev: event });
+    }
 }

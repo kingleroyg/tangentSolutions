@@ -1,0 +1,40 @@
+<ion-navbar *navbar class="hide-border">
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons start>
+        <button (click)="refreshProject()">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+        <button (click)="addProject()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>
+<ion-content class="schedule">
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let project of projects" [hidden]="project.hide">
+            <ion-item (click)="viewProject(project)">
+                <ion-note item-right>
+                    <ion-badge item-right>{{project.start_date}}</ion-badge>
+                </ion-note>
+                <h2>{{project.title | uppercase}} {{project.pk}}</h2>
+                <p>{{project.description}}</p>
+            </ion-item>
+            <ion-item-options>
+                <button primary (click)="deleteProject(project)">
+                    <ion-icon name="trash"></ion-icon>
+                    Delete
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-list-header *ngIf="projects == null">
+        NO PROJECTS FOUND
+    </ion-list-header>
+</ion-content>

@@ -15,7 +15,6 @@
 // in the app.core.scss file and not this file. Sass variables specific
 // to the mode belong in the app.ios.scss, app.md.scss, or app.wp.scss files.
 
-
 // App Shared Color Variables
 // --------------------------------------------------
 // It's highly recommended to change the default colors
@@ -25,14 +24,4 @@
 // Both iOS and MD colors can be further customized if colors
 // are different per mode.
 
-$colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  favorite:   #69BB7B,
-  twitter:    #53ACEB,
-  github:     #000000,
-  instagram:  #235D8D
-);
+$colors: ( primary: #54dbc2, secondary: #32db64, danger: #f53d3d, light: #f4f4f4, dark: #424a52, favorite: #69BB7B, twitter: #53ACEB, github: #424a52, instagram: #235D8D );
