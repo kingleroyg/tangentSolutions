@@ -5,6 +5,9 @@ Tangent Solutions Assignment. Practical Assignment – Hybrid Ionic App
 > “project” : Interview Assignment
 > “project_category” : Hybrid Ionic
 > “version” : v1.0
+#Presentation
+This is a presentation build.
+
 
 #Requirements
 
